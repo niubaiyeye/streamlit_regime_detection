@@ -1,12 +1,14 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import streamlit as st
+import os
+
 ######
 file_path = 'Data\\'
 list = ['000016.SH', '000300.SH', '000852.SH', '000905.SH']
 ######
 def upload_data(file):
-    file_address = file_path + file + '.csv'
+    file_address = os.path.join(file_path + file + '.csv')
     df = pd.read_csv(file_address)
     df['date'] = pd.to_datetime(df['date'])
     df = df.dropna(subset=['CLOSE','superTrend','volRank','atrRank','volvPctRank', 'vmPctRank', 'DailyVolRank'])
